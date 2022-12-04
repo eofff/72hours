@@ -8,11 +8,10 @@ import { MainComponent } from './main/main.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SuccessedComponent } from './pages/successed/successed.component';
 import { FailedComponent } from './pages/failed/failed.component';
-import { MainListComponent } from './components/main-list/main-list.component';
-import { TextListComponent } from './components/text-list/text-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,8 +20,6 @@ import { MatTabsModule } from '@angular/material/tabs';
     HomeComponent,
     SuccessedComponent,
     FailedComponent,
-    MainListComponent,
-    TextListComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +27,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatTabsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: MainComponent },
     ])
