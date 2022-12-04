@@ -1,10 +1,20 @@
 export class Task {
     private readonly name: string;
     private readonly created: Date;
+    private isSucceed: boolean;
 
     constructor(name: string, created: Date) {
         this.name = name;
         this.created = created;
+        this.isSucceed = false;
+    }
+
+    public getSucceed(): boolean {
+        return this.isSucceed;
+    }
+
+    public setSucceed(isSucceed: boolean): void {
+        this.isSucceed = isSucceed;
     }
 
     public getName() : string {
@@ -16,6 +26,6 @@ export class Task {
     }
 
     public getHoursDelta(date2: Date) : number {
-        return date2.getHours() - this.created.getHours();
+        return (date2.getTime() - this.created.getTime()) / 3600000;
     }
 }

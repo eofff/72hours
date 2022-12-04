@@ -1,1 +1,15 @@
-sa
+<div>
+    <div *ngFor="let task of tasks">
+        {{ task.getName() }}
+        {{ getHoursDeltaFromNow(task) }}
+            <button (click)="finishTask(task)">ok</button>
+            <button (click)="removeTask(task)">-</button>
+    </div>
+
+    <div>
+    <form [formGroup]="addNewTaskForm" (ngSubmit)="addTask()">
+        <input formControlName="name" type="text" placeholder="name:">
+        <button type="submit">add</button>
+    </form>
+    </div>
+</div>
