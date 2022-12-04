@@ -11,14 +11,24 @@ export class TaskService {
   private tasksSubject: Subject<Task[]> = new Subject<Task[]>();
 
   constructor() {
-    this.tasks = [
-      new Task("kek1", new Date()),
-      new Task("kek2", new Date()),
-    ]
+    const loadedTasks: string | null = localStorage.getItem("tasks");
+
+    if (loadedTasks) {
+      const dataTasks = JSON.parse(loadedTasks) as Task[];
+
+      this.tasks = dataTasks.map((v: any) => new Task(v.name, new Date(v.created), v.isSucceed));
+
+      console.log(this.tasks[1])
+    }
+
     this.tasksSubject.next(this.tasks);
 
-    setTimeout(() => this.tasksSubject.next(this.tasks), 100);
-    setInterval(() => this.tasksSubject.next(this.tasks), 5000);
+    // TODO: check this moment
+    setTimeout(() => this.tasksSubject.next(this.tasks), 300);
+
+    this.tasksSubject.subscribe((tasks: Task[]) => {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    });
   }
 
   public getTasks() : Subject<Task[]> {

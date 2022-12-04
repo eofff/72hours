@@ -3,10 +3,12 @@ export class Task {
     private readonly created: Date;
     private isSucceed: boolean;
 
-    constructor(name: string, created: Date) {
+    constructor(name: string, created: Date);
+    constructor(name: string, created: Date, isSucceed: boolean);
+    constructor(name: string, created: Date, isSucceed?: boolean) {
         this.name = name;
         this.created = created;
-        this.isSucceed = false;
+        this.isSucceed = isSucceed ?? false;
     }
 
     public getSucceed(): boolean {
