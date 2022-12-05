@@ -40,6 +40,8 @@ export class HomeComponent implements OnInit {
 
     if (newTaskName.length > 3) {
       this.taskService.addTask(new Task(newTaskName, new Date()));
+
+      this.addNewTaskForm.reset();
     }
   }
 

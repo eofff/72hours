@@ -1,15 +1,51 @@
-<div>
+<div style="max-width: 600px; margin:auto">
     <div *ngFor="let task of tasks">
-        {{ task.getName() }}
-        {{ getHoursDeltaFromNow(task) }}
-            <button (click)="finishTask(task)">ok</button>
-            <button (click)="removeTask(task)">-</button>
+        <mat-grid-list cols="12" [rowHeight]="50">
+            <mat-grid-tile
+                [colspan]="10"
+                [rowspan]="1">
+                {{ task.getName() }}
+            </mat-grid-tile>
+            <mat-grid-tile
+                [colspan]="1"
+                [rowspan]="2">
+                <button mat-raised-button color="primary" (click)="finishTask(task)">tried</button>
+            </mat-grid-tile>
+            <mat-grid-tile
+                [colspan]="1"
+                [rowspan]="2">
+                <button mat-raised-button color="warn" (click)="removeTask(task)">-</button>
+            </mat-grid-tile>
+            <mat-grid-tile
+                [colspan]="10"
+                [rowspan]="1">
+                <mat-progress-bar mode="determinate" value="{{ (72 - getHoursDeltaFromNow(task)) / 0.72 }}"></mat-progress-bar>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <mat-divider></mat-divider>
     </div>
 
     <div>
     <form [formGroup]="addNewTaskForm" (ngSubmit)="addTask()">
-        <input formControlName="name" type="text" placeholder="name:">
-        <button type="submit">add</button>
+        <mat-grid-list cols="12" [rowHeight]="100">
+            <mat-grid-tile
+                [colspan]="10"
+                [rowspan]="1">
+                <mat-form-field class="full-width">
+                    <mat-label>New task name</mat-label>
+                    <input matInput formControlName="name" type="text" placeholder="new task">
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile
+                [colspan]="1"
+                [rowspan]="1">
+            </mat-grid-tile>
+            <mat-grid-tile
+                [colspan]="1"
+                [rowspan]="1">
+                <button mat-raised-button color="primary" type="submit">add</button>
+            </mat-grid-tile>
+        </mat-grid-list>
     </form>
     </div>
 </div>
