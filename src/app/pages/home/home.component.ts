@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 
 import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/dtos/task';
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) {
   }
 
